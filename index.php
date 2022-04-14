@@ -7,28 +7,22 @@
     </head>
     <body>
         <?php
-            function arrOperation ($numbers, $condition)
+            function arrSum($numbers, $condition)
             {
                 $result = 0;
 
                 foreach ($numbers as $number)
                 {
-                    if ($condition($number))
-                    {
-                        $result += $number;
-                    }
+                    if ($condition($number)) $result += $number;
+
+                    return $result;
                 }
-
-                return $result;
             }
-
-            $isEvenNumber = function($n) { return $n % 2 == 0; };
-            $isPositiveNumber = function($n) { return $n > 0; };
 
             $myNumbers = [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5];
 
-            $positiveSum = arrOperation($myNumbers, $isPositiveNumber);
-            $evenSum = arrOperation($myNumbers, $isEvenNumber);
+            $positiveSum = arrSum($myNumbers, fn($n) => $n > 0);
+            $evenSum = arrSum($myNumbers, fn($n) => $n % 2 == 0);
 
             echo "<h1>Сумма положительных чисел: $positiveSum</h1><h1>Сумма чётных чисел: $evenSum</h1>";
         ?>
